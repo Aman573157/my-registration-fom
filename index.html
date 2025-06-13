@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Registration Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .form-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            color: #fff;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-header h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .form-header p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .input-group input, 
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .input-group input::placeholder,
+        .input-group select option:first-child {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .input-group select option:not(:first-child) {
+            color: #333;
+        }
+        
+        .input-group .icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 8px;
+        }
+        
+        .file-upload {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .file-upload-btn {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px dashed rgba(255, 255, 255, 0.4);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .file-upload input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .preview-image {
+            margin-top: 10px;
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .terms {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .terms input {
+            margin-right: 10px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #ff5252, #ff7676);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .login-link a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .form-header h2 {
+                font-size: 24px;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Create Account</h2>
+            <p>Join our community today</p>
+        </div>
+        
+        <form id="registerForm">
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Username">
+                <span class="icon">👤</span>
+                <div class="error-message" id="usernameError">Username must be at least 4 characters</div>
+            </div>
+            
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email Address">
+                <span class="icon">✉️</span>
+                <div class="error-message" id="emailError">Please enter a valid email</div>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password">
+                <span class="icon">🔒</span>
+                <div class="error-message" id="passwordError">Password must be 8+ characters</div>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password">
+                <span class="icon">🔒</span>
+                <div class="error-message" id="confirmPasswordError">Passwords don't match</div>
+            </div>
+            
+            <div class="input-group">
+                <label>Date of Birth</label>
+                <input type="date" id="dob">
+                <div class="error-message" id="dobError">Please enter your date of birth</div>
+            </div>
+            
+            <div class="input-group">
+                <label>Gender</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other">Other</label>
+                    </div>
+                </div>
+                <div class="error-message" id="genderError">Please select your gender</div>
+            </div>
+            
+            <div class="input-group">
+                <select id="course">
+                    <option value="">Select your course</option>
+                    <option value="cs">Computer Science</option>
+                    <option value="eng">Engineering</option>
+                    <option value="business">Business Administration</option>
+                    <option value="arts">Arts & Humanities</option>
+                    <option value="science">Natural Sciences</option>
+                </select>
+                <div class="error-message" id="courseError">Please select a course</div>
+            </div>
+            
+            <div class="input-group">
+                <textarea id="address" placeholder="Your Address" rows="3"></textarea>
+                <div class="error-message" id="addressError">Please enter your address</div>
+            </div>
+            
+            <div class="input-group">
+                <label>Upload Photo</label>
+                <div class="file-upload">
+                    <button type="button" class="file-upload-btn">Choose File</button>
+                    <input type="file" id="photo" accept="image/*">
+                </div>
+                <img id="preview" class="preview-image" alt="Photo Preview">
+                <div class="error-message" id="photoError">Please upload a photo (max 2MB)</div>
+            </div>
+            
+            <div class="terms">
+                <input type="checkbox" id="agreeTerms">
+                <label for="agreeTerms">I agree to the Terms & Conditions</label>
+                <div class="error-message" id="termsError">You must agree to terms</div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Register Now</button>
+            
+            <div class="login-link">
+                Already have an account? <a href="#">Login here</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registerForm');
+            const photoInput = document.getElementById('photo');
+            const preview = document.getElementById('preview');
+            
+            // Real-time validation
+            document.getElementById('username').addEventListener('input', validateUsername);
+            document.getElementById('email').addEventListener('input', validateEmail);
+            document.getElementById('password').addEventListener('input', validatePassword);
+            document.getElementById('confirmPassword').addEventListener('input', validateConfirmPassword);
+            document.getElementById('dob').addEventListener('change', validateDOB);
+            document.getElementById('course').addEventListener('change', validateCourse);
+            document.getElementById('address').addEventListener('input', validateAddress);
+            
+            // Handle photo preview
+            photoInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    if (file.size > 2 * 1024 * 1024) { // 2MB limit
+                        document.getElementById('photoError').style.display = 'block';
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        preview.src = event.target.result;
+                        preview.style.display = 'block';
+                        document.getElementById('photoError').style.display = 'none';
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate all fields
+                const isUsernameValid = validateUsername();
+                const isEmailValid = validateEmail();
+                const isPasswordValid = validatePassword();
+                const isConfirmPasswordValid = validateConfirmPassword();
+                const isDOBValid = validateDOB();
+                const isGenderValid = validateGender();
+                const isCourseValid = validateCourse();
+                const isAddressValid = validateAddress();
+                const isPhotoValid = validatePhoto();
+                const isTermsChecked = validateTerms();
+                
+                if (isUsernameValid && isEmailValid && isPasswordValid && 
+                    isConfirmPasswordValid && isDOBValid && isGenderValid && 
+                    isCourseValid && isAddressValid && isPhotoValid && isTermsChecked) {
+                    // Form is valid - process registration
+                    alert('Registration successful!');
+                    
+                    // Create FormData object to send files
+                    const formData = new FormData(form);
+                    formData.append('photo', photoInput.files[0]);
+                    
+                    // Here you would typically send the data to a server
+                    console.log('Form submitted with:', {
+                        username: document.getElementById('username').value.trim(),
+                        email: document.getElementById('email').value.trim(),
+                        password: document.getElementById('password').value,
+                        dob: document.getElementById('dob').value,
+                        gender: document.querySelector('input[name="gender"]:checked').value,
+                        course: document.getElementById('course').value,
+                        address: document.getElementById('address').value.trim(),
+                        photo: photoInput.files[0] ? photoInput.files[0].name : 'None'
+                    });
+                    
+                    form.reset();
+                    preview.style.display = 'none';
+                }
+            });
+            
+            function validateUsername() {
+                const username = document.getElementById('username').value.trim();
+                const errorElement = document.getElementById('usernameError');
+                
+                if (username.length < 4) {
+                    errorElement.style.display = 'block';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateEmail() {
+                const email = document.getElementById('email').value.trim();
+                const errorElement = document.getElementById('emailError');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (!emailRegex.test(email)) {
+                    errorElement.style.display = 'block';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validatePassword() {
+                const password = document.getElementById('password').value;
+                const errorElement = document.getElementById('passwordError');
+                
+                if (password.length < 8) {
+                    errorElement.style.display = 'block';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateConfirmPassword() {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const errorElement = document.getElementById('confirmPasswordError');
+                
+                if (password !== confirmPassword || confirmPassword === '') {
+                    errorElement.style.display = 'block';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateDOB() {
+                const dob = document.getElementById('dob').value;
+                const errorElement = document.getElementById('dobError');
+                
+                if (!dob) {
+                    errorElement.style.display = 'block';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateGender() {
+                const genderSelected = document.querySelector('input[name="gender"]:checked');
+                const errorElement = document.getElementById('genderError');
+                
+                if (!genderSelected) {
+                    errorElement.style.display = 'block';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateCourse() {
+                const course = document.getElementById('course').value;
+                const errorElement = document.getElementById('courseError');
+                
+                if (!course) {
+                    errorElement.style.display = 'block';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateAddress() {
+                const address = document.getElementById('address').value.trim();
+                const errorElement = document.getElementById('addressError');
+                
+                if (address.length < 10) {
+                    errorElement.style.display = 'block';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validatePhoto() {
+                const file = photoInput.files[0];
+                const errorElement = document.getElementById('photoError');
+                
+                if (!file) {
+                    errorElement.style.display = 'block';
+                    errorElement.textContent = 'Please upload a photo';
+                    return false;
+                } else if (file.size > 2 * 1024 * 1024) {
+                    errorElement.style.display = 'block';
+                    errorElement.textContent = 'Photo must be less than 2MB';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateTerms() {
+                const isChecked = document.getElementById('agreeTerms').checked;
+                const errorElement = document.getElementById('termsError');
+                
+                if (!isChecked) {
+                    errorElement.style.display = 'block';
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
